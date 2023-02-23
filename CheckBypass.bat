@@ -8,5 +8,7 @@ exit
 set target=C:\$WINDOWS.~BT\Sources\appraiserres.dll
 echo Keep this window open while running the setup.
 :a
-if exist %target% echo appraiserres.dll got removed& del %target% /F /Q > nul 2> nul
+set size=2
+if exist %target% for /f %%i in ("%target%") do set size=%%~zi
+if not "%size%"=="2" del %target% /F /Q& echo.>%target%& echo appraiserres.dll got nuked.
 goto a
